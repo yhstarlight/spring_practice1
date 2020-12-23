@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+	<!-- MemberVO 빈 클래스 객체 별칭 m을 설정 -->
+	<typeAlias alias="m" type="org.zerock.vo.MemberVO"/>
+	
+	<typeAlias alias="b" type="org.zerock.vo.BoardVO"/>
+	
+	<typeAlias alias="r" type="org.zerock.vo.ReplyVO"/>
+	
+	<typeAlias alias="message" type="org.zerock.vo.MessageVO"/>
+	
+	<typeAlias alias="user" type="org.zerock.vo.UserVO"/>
+
+	<typeAlias alias="admin" type="org.zerock.vo.AdminVO"/>
+	
+	<typeAlias alias="gongji" type="org.zerock.vo.GongjiVO"/>
+	</typeAliases>
+</configuration>

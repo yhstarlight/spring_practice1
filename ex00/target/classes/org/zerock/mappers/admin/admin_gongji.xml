@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminGongji">
+
+<!-- 관리자 공지 저장 -->
+<insert id="ag_in" parameterType="gongji">
+	insert into gongji (gongji_no, gongji_name, gongji_title,
+	gongji_pwd, gongji_cont, gongji_date)
+	values (g_no_seq.nextval, #{gongji_name}, #{gongji_title},
+	#{gongji_pwd}, #{gongji_cont},sysdate)
+</insert>
+</mapper>

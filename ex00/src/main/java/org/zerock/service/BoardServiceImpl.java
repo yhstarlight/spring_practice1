@@ -1,0 +1,56 @@
+package org.zerock.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+import org.zerock.dao.BoardDAO;
+import org.zerock.vo.BoardVO;
+
+@Service
+public class BoardServiceImpl implements BoardService {
+
+	@Autowired
+	private BoardDAO boardDao;
+
+	@Override
+	public int getCount() {	
+		return this.boardDao.getCount();
+	}
+
+	@Override
+	public List<BoardVO> getList(BoardVO b) {
+		return this.boardDao.getList(b);
+	}
+
+	@Override
+	public void insertBoard(BoardVO b) {
+		this.boardDao.insertBoard(b);
+	}
+
+	//스프링의 aop를 통한 트랜잭션을 적용해서 데이터를 일치.
+	@Transactional(isolation = Isolation.READ_COMMITTED)
+	//트랜잭션 격리(트랜잭션이 처리되는 중간에 외부간섭을 제거)
+	@Override
+	public BoardVO getCont(int bno) {
+		this.boardDao.updateHit(bno);//조회수 증가
+		return this.boardDao.getCont(bno); //오라클 데이터베이스로 부터 게시물 내용을 가져온다.
+	}// 조회수 증가와 게시물 내용 보기로 분리
+
+	@Override
+	public BoardVO getCont2(int bno) {
+		return this.boardDao.getCont(bno); //게시물 내용만 가져온다.
+	}
+
+	@Override
+	public void editBoard(BoardVO eb) {
+		this.boardDao.editBoard(eb);
+	}
+
+	@Override
+	public void delBoard(int bno) {
+		this.boardDao.delBoard(bno);		
+	} //게시물 삭제
+}
